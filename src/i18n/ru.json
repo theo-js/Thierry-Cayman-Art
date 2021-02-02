@@ -1,0 +1,13 @@
+{
+    "app.title": "Thierry Cayman",
+    "app.art": "Art",
+    "app.sections.portfolio": "Портфолио",
+    "app.sections.bibliography": "Библ.",
+    "app.sections.contacts": "Связаться",
+    "app.sections.news": "Новости",
+    "app.sections.links": "Ссылки",
+    "app.oops": "Ой !",
+    "app.404msg": "Кажется, этой страницы не существует",
+    "app.404": "Thierry Cayman Art - Не найдёно",
+    "artworks.maximize": "Развернуть %{artworkTitle}"
+}

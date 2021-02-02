@@ -1,0 +1,13 @@
+{
+    "app.title": "Thierry Cayman",
+    "app.art": "Art",
+    "app.sections.portfolio": "Portfolio",
+    "app.sections.bibliography": "Bibliografie",
+    "app.sections.contacts": "Contacten",
+    "app.sections.news": "Nieuws",
+    "app.sections.links": "Links",
+    "app.oops": "Oeps !",
+    "app.404msg": "Sorry, deze pagina bestaat niet",
+    "app.404": "404-fout",
+    "artworks.maximize": "Vergroten %{artworkTitle}"
+}

@@ -1,0 +1,13 @@
+{
+    "app.title": "Thierry Cayman",
+    "app.art": "Kunst",
+    "app.sections.portfolio": "Portfolio",
+    "app.sections.bibliography": "Bibliographie",
+    "app.sections.contacts": "Contacts",
+    "app.sections.news": "Actualités",
+    "app.sections.links": "Liens",
+    "app.oops": "Oups !",
+    "app.404msg": "Désolé, cette page n'existe pas",
+    "app.404": "Thierry Cayman Art - Page non trouvée",
+    "artworks.maximize": "Agrandir %{artworkTitle}"
+}
