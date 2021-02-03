@@ -13,13 +13,13 @@
         class="app-logo light"
         loading="lazy"
         alt="Signature de Thierry Cayman"
-        src="http://localhost:8000/static/images/misc/logo-site-clair.svg"
+        src="/static/images/misc/logo-site-clair.svg"
       />
       <img
         class="app-logo dark"
         loading="lazy"
         alt="Signature de Thierry Cayman"
-        src="http://localhost:8000/static/images/misc/logo-site.svg"
+        src="/static/images/misc/logo-site.svg"
       />
 
       <ul class="links-list">
