@@ -86,5 +86,6 @@ a {
 }
 p {
   font-family: 'Dosis', sans-serif;
+  letter-spacing: .625px;
 }
 </style>

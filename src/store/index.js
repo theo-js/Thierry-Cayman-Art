@@ -1,10 +1,17 @@
 import { createStore } from 'vuex'
 import {
+    // Portfolio
     SET_PORTFOLIO_CATEGORIES,
     SET_SELECTED_PORTFOLIO_CATEGORY,
     APPEND_ARTWORKS_TO_CATEGORY,
     SET_SELECTED_PORTFOLIO_ARTWORK,
-    NAVIGATE_ARTWORK
+    NAVIGATE_ARTWORK,
+    // Bibliography
+    SET_BIBL_SECTION,
+    ADD_OEUVRES,
+    PUSH_OEUVRES,
+    ADD_BIBL_SERIES,
+    SET_SELECTED_SERIE
 } from './mutation-types'
 import { intlifyArtwork } from '../i18n/intlify'
 
@@ -13,7 +20,17 @@ const store = createStore({
         // Artworks
         portfolioCategories: [],
         selectedPortfolioCategory: null,
-        selectedArtwork: null
+        selectedArtwork: null,
+        // Bibliography
+        biblSection: '',
+        biblOeuvres: {
+            'series': [],
+            'oneshot': [],
+            'livres': [],
+            'divers': []
+        },
+        biblSeries: [],
+        selectedBiblSerie: null
     },
     mutations: {
         // Artworks
@@ -69,6 +86,25 @@ const store = createStore({
                     state.selectedArtwork = intlifyArtwork(artworks[nextIndex])
                 }
             }
+        },
+        // Bibliography
+        [SET_BIBL_SECTION] (state, newSection) {
+            state.biblSection = newSection
+        },
+        [ADD_OEUVRES] (state, { oeuvres, section }) {
+            state['biblOeuvres'][section] = oeuvres
+        },
+        [PUSH_OEUVRES] (state, { oeuvres, section }) {
+            state.['biblOeuvres'][section] = [
+                ...state.['biblOeuvres'][section],
+                ...oeuvres
+            ]
+        },
+        [ADD_BIBL_SERIES] (state, series) {
+            state.biblSeries = series
+        },
+        [SET_SELECTED_SERIE] (state, serieName) {
+            state.selectedBiblSerie = serieName
         }
     },
     actions: {
@@ -87,6 +123,22 @@ const store = createStore({
         },
         navigateArtwork: (context, { currentIndex, lastIndex, toNextArtwork }) => {
             context.commit(NAVIGATE_ARTWORK, { currentIndex, lastIndex, toNextArtwork })
+        },
+        // Bibliography
+        selectBiblSection: (context, newSection) => {
+            context.commit(SET_BIBL_SECTION, newSection)
+        },
+        addOeuvres: (context, { oeuvres, section }) => {
+            context.commit(ADD_OEUVRES, { oeuvres, section })
+        },
+        pushOeuvres: (context, { oeuvres, section }) => {
+            context.commit(PUSH_OEUVRES, { oeuvres, section })
+        },
+        addBiblSeries: (context, series) => {
+            context.commit(ADD_BIBL_SERIES, series)
+        },
+        selectBiblSerie: (context, serieName) => {
+            context.commit(SET_SELECTED_SERIE, serieName)
         }
     }
 })

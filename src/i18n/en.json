@@ -3,11 +3,32 @@
     "app.art": "Art",
     "app.sections.portfolio": "Portfolio",
     "app.sections.bibliography": "Bibliography",
+    "app.sections.bibliography.full": "Bibliography",
     "app.sections.contacts": "Contact",
     "app.sections.news": "News",
     "app.sections.links": "Links",
     "app.oops": "Oops !",
     "app.404msg": "Sorry, page not found",
     "app.404": "Thierry Cayman Art - Page not found",
-    "artworks.maximize": "Maximize %{artworkTitle}"
+
+    "artworks.maximize": "Maximize %{artworkTitle}",
+
+    "bibliography.sections.comics": "Comics",
+    "bibliography.sections.comics.title": "",
+    "bibliography.sections.comics.description": "",
+    "bibliography.sections.divers": "Miscellaneous",
+    "bibliography.sections.divers.title": "",
+    "bibliography.sections.divers.description": "",
+    "bibliography.sections.series": "Series",
+    "bibliography.sections.series.title": "",
+    "bibliography.sections.series.description": "",
+    "bibliography.sections.oneshot": "One shot",
+    "bibliography.sections.oneshot.title": "",
+    "bibliography.sections.oneshot.description": "",
+    "bibliography.sections.livres": "Picture books",
+    "bibliography.sections.livres.title": "",
+    "bibliography.sections.livres.description": "",
+
+    "bibliographie.serie.editeur": "Publisher",
+    "bibliographie.oeuvre.parution": "Release"
 }

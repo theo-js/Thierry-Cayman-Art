@@ -3,11 +3,32 @@
     "app.art": "Art",
     "app.sections.portfolio": "Portfolio",
     "app.sections.bibliography": "Bibliografie",
+    "app.sections.bibliography.full": "Bibliografie",
     "app.sections.contacts": "Contacten",
     "app.sections.news": "Nieuws",
     "app.sections.links": "Links",
     "app.oops": "Oeps !",
     "app.404msg": "Sorry, deze pagina bestaat niet",
     "app.404": "404-fout",
-    "artworks.maximize": "Vergroten %{artworkTitle}"
+
+    "artworks.maximize": "Vergroten %{artworkTitle}",
+
+    "bibliography.sections.comics": "Strip",
+    "bibliography.sections.comics.title": "",
+    "bibliography.sections.comics.description": "",
+    "bibliography.sections.divers": "Diversen",
+    "bibliography.sections.divers.title": "",
+    "bibliography.sections.divers.description": "",
+    "bibliography.sections.series": "Serie",
+    "bibliography.sections.series.title": "",
+    "bibliography.sections.series.description": "",
+    "bibliography.sections.oneshot": "One shot",
+    "bibliography.sections.oneshot.title": "",
+    "bibliography.sections.oneshot.description": "",
+    "bibliography.sections.livres": "Prentenboeken",
+    "bibliography.sections.livres.title": "",
+    "bibliography.sections.livres.description": "",
+
+    "bibliographie.serie.editeur": "Uitgeverij",
+    "bibliographie.oeuvre.parution": "Publicatie"
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="portfolio">
     <section class="category-section">
-      <h2>Portfolio</h2>
+      <h2>{{ $t('app.sections.portfolio') }}</h2>
       <ul class="category-list" v-if="tCategories.length > 0">
         <li
           v-for="(category, index) in tCategories"
@@ -79,7 +79,7 @@ import ArtworkPreview from '../../components/artwork-preview'
 import ArtworkSlideshow from '../../containers/artwork-slideshow'
 
 export default {
-  name: 'dessins',
+  name: 'portfolio',
   components: {
     'artwork-preview': ArtworkPreview,
     'artwork-slideshow': ArtworkSlideshow
@@ -107,7 +107,7 @@ export default {
           ) {
             // Fetch if category in store does not have an artworks property yet
             try {
-              const res = await axios.get(`/api/dessins?categorie_fr=${this.currentCategory.nom_fr}`)
+              const res = await axios.get(`/api/portfolio/dessins?categorie_fr=${this.currentCategory.nom_fr}`)
               this.$store.dispatch(
                 'appendArtworksToCategory',
                 {
@@ -177,7 +177,7 @@ export default {
         if (this.$store.state.portfolioCategories <= 0) {
           (async () => {
             try {
-              const res = await axios.get('/api/categories')
+              const res = await axios.get('/api/portfolio/categories')
               this.$store.dispatch('setPortfolioCategories', Object.freeze(res.data))
               resolve(res.data)
             } catch (err) {
@@ -332,7 +332,6 @@ export default {
 
 .artwork-title {
   font-weight: 400;
-  font-style: italic;
   text-align: right;
   margin: .5rem 2px;
   color: var(--titles-dark);

@@ -8,9 +8,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/bibliographie',
+    path: '/bibliographie/:section?',
     name: 'bibliographie',
-    component: () => import('@/pages/NotFound')
+    component: () => import('@/pages/Bibliography')
   },
   {
     path: '/contacts',

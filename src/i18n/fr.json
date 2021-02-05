@@ -3,11 +3,32 @@
     "app.art": "Kunst",
     "app.sections.portfolio": "Portfolio",
     "app.sections.bibliography": "Bibliographie",
+    "app.sections.bibliography.full": "Bibliographie",
     "app.sections.contacts": "Contacts",
     "app.sections.news": "Actualités",
     "app.sections.links": "Liens",
     "app.oops": "Oups !",
     "app.404msg": "Désolé, cette page n'existe pas",
     "app.404": "Thierry Cayman Art - Page non trouvée",
-    "artworks.maximize": "Agrandir %{artworkTitle}"
+
+    "artworks.maximize": "Agrandir %{artworkTitle}",
+
+    "bibliography.sections.comics": "Bande dessinée",
+    "bibliography.sections.comics.title": "",
+    "bibliography.sections.comics.description": "",
+    "bibliography.sections.divers": "Divers",
+    "bibliography.sections.divers.title": "",
+    "bibliography.sections.divers.description": "",
+    "bibliography.sections.series": "Séries",
+    "bibliography.sections.series.title": "",
+    "bibliography.sections.series.description": "",
+    "bibliography.sections.oneshot": "One shot",
+    "bibliography.sections.oneshot.title": "",
+    "bibliography.sections.oneshot.description": "",
+    "bibliography.sections.livres": "Livres illustrés",
+    "bibliography.sections.livres.title": "",
+    "bibliography.sections.livres.description": "",
+
+    "bibliographie.serie.editeur": "Éditeur",
+    "bibliographie.oeuvre.parution": "Parution"
 }

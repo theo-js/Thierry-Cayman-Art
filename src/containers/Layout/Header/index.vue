@@ -25,31 +25,44 @@
       <ul class="links-list">
         <li>
           <router-link
+            @click="moveBorder"
             :to="{ name: 'portfolio'}"
             :class="$route.path.match('portfolio') ? 'router-link-active' : ''"
           >{{ $t('app.sections.portfolio') }}</router-link>
         </li>
         <li class="bar">|</li>
         <li>
-          <router-link :to="{ name: 'bibliographie' }">
+          <router-link
+            @click="moveBorder"
+            :to="{ name: 'bibliographie' }"
+          >
             {{ $t('app.sections.bibliography') }}
           </router-link>
         </li>
         <li class="bar">|</li>
         <li>
-          <router-link :to="{ name: 'contacts' }">
+          <router-link
+            @click="moveBorder"
+            :to="{ name: 'contacts' }"
+          >
             {{ $t('app.sections.contacts') }}
           </router-link>
         </li>
         <li class="bar">|</li>
         <li>
-          <router-link :to="{ name: 'actualites' }">
+          <router-link
+            @click="moveBorder"
+            :to="{ name: 'actualites' }"
+          >
             {{ $t('app.sections.news') }}
           </router-link>
         </li>
         <li class="bar">|</li>
         <li>
-          <router-link :to="{ name: 'liens' }">
+          <router-link
+            @click="moveBorder"
+            :to="{ name: 'liens' }"
+          >
             {{ $t('app.sections.links') }}
           </router-link>
         </li>
@@ -57,6 +70,14 @@
         <li style="margin-left: .25rem" class="lang">
           <LanguageSelect></LanguageSelect>
         </li>
+        <span
+          class="moving-border"
+          :style="{
+            width: `${borderPos.width}px`,
+            left: `${borderPos.left}px`,
+            transition: borderPos.transition
+          }"
+        ></span>
       </ul>
       <button
         @click="isNavOpen = !isNavOpen"
@@ -84,9 +105,28 @@ export default {
     components: {
       LanguageSelect
     },
-    data() {
+    data () {
       return {
-        isNavOpen: false
+        isNavOpen: false,
+        borderPos: {
+          left: 0,
+          width: 0,
+          transition: ''
+        }
+      }
+    },
+    methods: {
+      moveBorder: function (clickEvent) {
+        if (!this.isHomePage) {
+          const { target } = clickEvent
+          const { width, left } = target.getBoundingClientRect()
+          const offsetLeft = target.parentElement.parentElement.getBoundingClientRect().left
+          this.borderPos = {
+            width,
+            left: left - offsetLeft,
+            transition: 'width .2s ease-in .2s, left .4s cubic-bezier(.62,-0.53,.1,.94) 0s'
+          }
+        }
       }
     }
 }
@@ -208,6 +248,18 @@ export default {
   transition: .5s all ease;
 }
 
+.moving-border { /* Moving border */
+  position: absolute;
+  background: var(--link-active);
+  top: calc(100% - 1px);
+  height: 2px;
+  display: block;
+  transition: .3s all ease;
+}
+.home .moving-border {
+  visibility: hidden;
+}
+
 .nav-toggler {
   display: none;
   cursor: pointer;
@@ -283,6 +335,9 @@ export default {
 }
 
 @media screen and (max-width: 920px) {
+  .moving-border {
+    visibility: hidden;
+  }
   /* Closed nav */
   .main-sections-nav.closed {
     height: 4.25rem;

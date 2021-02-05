@@ -2,13 +2,15 @@
   "name": "thierry-cayman",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/vue-fontawesome": "3.0.0-1",
     "@vueuse/head": "^0.2.3",
     "axios": "^0.21.1",
     "babel-runtime": "^6.26.0",

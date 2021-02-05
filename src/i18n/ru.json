@@ -3,11 +3,32 @@
     "app.art": "Art",
     "app.sections.portfolio": "Портфолио",
     "app.sections.bibliography": "Библ.",
+    "app.sections.bibliography.full": "Библиография",
     "app.sections.contacts": "Связаться",
     "app.sections.news": "Новости",
     "app.sections.links": "Ссылки",
     "app.oops": "Ой !",
     "app.404msg": "Кажется, этой страницы не существует",
     "app.404": "Thierry Cayman Art - Не найдёно",
-    "artworks.maximize": "Развернуть %{artworkTitle}"
+
+    "artworks.maximize": "Развернуть %{artworkTitle}",
+
+    "bibliography.sections.comics": "Комикс",
+    "bibliography.sections.comics.title": "",
+    "bibliography.sections.comics.description": "",
+    "bibliography.sections.divers": "Разное",
+    "bibliography.sections.divers.title": "",
+    "bibliography.sections.divers.description": "",
+    "bibliography.sections.series": "Серии",
+    "bibliography.sections.series.title": "",
+    "bibliography.sections.series.description": "",
+    "bibliography.sections.oneshot": "One shot",
+    "bibliography.sections.oneshot.title": "",
+    "bibliography.sections.oneshot.description": "",
+    "bibliography.sections.livres": "Книжки с картинками",
+    "bibliography.sections.livres.title": "",
+    "bibliography.sections.livres.description": "",
+
+    "bibliographie.serie.editeur": "Издательство",
+    "bibliographie.oeuvre.parution": "Дата выхода"
 }

@@ -32,5 +32,13 @@ app.use(i18n)
 const head = createHead()
 app.use(head)
 
+// Icons
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import FontAwesomeIcon from '@/lib/FontAwesome'
+
+library.add(faChevronDown, faChevronUp)
+app.component('font-awesome-icon', FontAwesomeIcon)
+
 // Mount
 app.mount('#app')
