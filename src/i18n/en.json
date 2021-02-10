@@ -30,5 +30,25 @@
     "bibliography.sections.livres.description": "",
 
     "bibliographie.serie.editeur": "Publisher",
-    "bibliographie.oeuvre.parution": "Release"
+    "bibliographie.oeuvre.parution": "Release",
+
+    "blog.title": "Thierry Cayman Art | Posts from {month} {year}",
+    "blog.noPosts": "No posts were published during that period of time",
+    "blog.loadingPosts": "Loading posts...",
+
+    "app.links.title": "A few interesting links ...",
+    "app.links.description": "Most of these are artists whose work interests me a lot. I suggest you discover them.",
+    "links.loadingLinks": "Loading links...",
+
+    "contact.howto.title": "How to reach to me ?",
+    "contact.form.title": "Leave me a message",
+    "contact.form.name": "Name",
+    "contact.form.email": "Email",
+    "contact.form.subject": "Subject",
+    "contact.form.msg": "Message",
+
+    "app.forms.send": "Send",
+    "app.forms.sending": "Sending...",
+    "app.forms.sent": "Sent !",
+    "app.forms.requiredFields": "These fields are required"
 }

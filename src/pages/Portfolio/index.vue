@@ -107,7 +107,7 @@ export default {
           ) {
             // Fetch if category in store does not have an artworks property yet
             try {
-              const res = await axios.get(`/api/portfolio/dessins?categorie_fr=${this.currentCategory.nom_fr}`)
+              const res = await axios.get(`/api/portfolio/dessins/?categorie_fr=${encodeURIComponent(this.currentCategory.nom_fr)}`)
               this.$store.dispatch(
                 'appendArtworksToCategory',
                 {
@@ -177,7 +177,7 @@ export default {
         if (this.$store.state.portfolioCategories <= 0) {
           (async () => {
             try {
-              const res = await axios.get('/api/portfolio/categories')
+              const res = await axios.get('/api/portfolio/categories/')
               this.$store.dispatch('setPortfolioCategories', Object.freeze(res.data))
               resolve(res.data)
             } catch (err) {

@@ -11,3 +11,9 @@ export const ADD_OEUVRES = 'ADD_OEUVRES'
 export const PUSH_OEUVRES = 'PUSH_OEUVRES'
 export const ADD_BIBL_SERIES = 'ADD_BIBL_SERIES'
 export const SET_SELECTED_SERIE = 'SET_SELECTED_SERIE'
+
+// Blog
+export const SET_BLOG_POSTS = 'SET_BLOG_POSTS'
+
+// Links
+export const SET_LINKS = 'SET_LINKS'

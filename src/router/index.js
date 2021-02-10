@@ -15,17 +15,17 @@ const routes = [
   {
     path: '/contacts',
     name: 'contacts',
-    component: () => import('@/pages/NotFound')
+    component: () => import('@/pages/Contact')
   },
   {
-    path: '/actualites',
+    path: '/actualites/:date?',
     name: 'actualites',
-    component: () => import('@/pages/NotFound')
+    component: () => import('@/pages/Blog')
   },
   {
     path: '/liens',
     name: 'liens',
-    component: () => import('@/pages/NotFound')
+    component: () => import('@/pages/Links')
   },
   {
     path: '/:pathMatch(.*)*',

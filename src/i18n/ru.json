@@ -30,5 +30,25 @@
     "bibliography.sections.livres.description": "",
 
     "bibliographie.serie.editeur": "Издательство",
-    "bibliographie.oeuvre.parution": "Дата выхода"
+    "bibliographie.oeuvre.parution": "Дата выхода",
+
+    "blog.title": "Thierry Cayman Art | Статьи за {month} {year} года",
+    "blog.noPosts": "За этот период публикаций не было",
+    "blog.loadingPosts": "Загрузка статей...",
+
+    "app.links.title": "Несколько интересных ссылок ...",
+    "app.links.description": "Большинство из этих - художники, чья работа меня очень интересует. Предлагаю вам их открыть.",
+    "links.loadingLinks": "Загрузка ссылок...",
+
+    "contact.form.name": "Ймя",
+    "contact.form.email": "Е-мейл",
+    "contact.form.subject": "Тема",
+    "contact.form.msg": "Содержание сообщения",
+
+    "contact.howto.title": "Как со мной связаться ?",
+    "contact.form.title": "Оставьте мне сообщение",
+    "app.forms.send": "Отправить",
+    "app.forms.sending": "Отправка...",
+    "app.forms.sent": "Отправлено !",
+    "app.forms.requiredFields": "Эти поля обязательны для заполнения"
 }

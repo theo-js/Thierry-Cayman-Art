@@ -112,6 +112,7 @@
                 loading="lazy"
                 :src="oeuvre.illustration"
                 @contextmenu.prevent
+                @click="closeup(oeuvre)"
                />
               <h4 class="oeuvre-title">{{ oeuvre.titre }}</h4>
               <p class="oeuvre-about" v-if="oeuvre.a_propos">
@@ -127,6 +128,18 @@
           </li>
         </ul>
     </main>
+    <transition name="fade-grow">
+      <div class="modal-window" v-if="isModalOpen" @click="closeupEnd">
+        <img
+          v-if="selectedOeuvre"
+          class="oeuvre-closeup"
+          :alt="selectedOeuvre.titre"
+          :src="selectedOeuvre.illustration"
+          loading="eager"
+          @contextmenu.prevent
+         />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -141,7 +154,9 @@ export default {
       hasSeriesFetchFailed: false,
       hasOeuvresFetchFailed: false,
       isComicsDropdownOpen: false,
-      isComicsDropdownClicked: false
+      isComicsDropdownClicked: false,
+      isModalOpen: false,
+      selectedOeuvre: null
     }
   },
   watch: {
@@ -153,6 +168,9 @@ export default {
 
       // Fetch oeuvres once
       this.fetchOnceOeuvres()
+
+      // Set document title
+      document.title = 'Thierry Cayman Art | ' + this.$t(`bibliography.sections.${this.currentBiblSection}`)
     },
     selectedBiblSerie () {
       if (this.selectedBiblSerie) {
@@ -163,7 +181,7 @@ export default {
         })
         // Only fetch more if current serie is empty
         if (!oeuvreInStore) {
-          axios.get(`http://localhost:8000/api/bibliographie/oeuvres?est_une_bd=true&categorie=series&serie=${this.selectedBiblSerie.nom_fr}`)
+          axios.get(`/api/bibliographie/oeuvres/?est_une_bd=true&categorie=series&serie=${encodeURIComponent(this.selectedBiblSerie.nom_fr)}`)
           .then(res => {
             this.$store.dispatch('pushOeuvres', { section: 'series', oeuvres: res.data })
           })
@@ -201,7 +219,17 @@ export default {
     },
     tOeuvres () {
       if (!this.currentOeuvres) return null
-      return this.currentOeuvres.map(oeuvre => intlifyOeuvre(oeuvre, this.$i18n.locale))
+      // Sort by date
+      const current = this.currentOeuvres
+      const sorted = current.sort((a, b) => {
+        const date1 = new Date(a.parution)
+        const date2 = new Date(b.parution)
+        if (date1 > date2) return 1
+        else if (date1 < date2) return -1
+        return 0
+      })
+        // Translate
+      return sorted.map(oeuvre => intlifyOeuvre(oeuvre, this.$i18n.locale))
     },
     tSeries () {
       if (!this.$store.state.biblSeries) return null
@@ -214,7 +242,7 @@ export default {
         if (this.$store.state.biblSeries <= 0) {
           (async () => {
             try {
-              const res = await axios.get('http://localhost:8000/api/bibliographie/series')
+              const res = await axios.get('/api/bibliographie/series/')
               this.$store.dispatch('addBiblSeries', res.data)
               resolve(res.data)
             } catch (err) {
@@ -239,7 +267,7 @@ export default {
               let res = null
               switch (this.currentBiblSection) {
                 case 'divers':
-                  res = await axios.get('http://localhost:8000/api/bibliographie/oeuvres?est_une_bd=false')
+                  res = await axios.get('/api/bibliographie/oeuvres/?est_une_bd=false')
                   break
                 case 'series': {
                   const currentSerie = this.selectedBiblSerie ? this.selectedBiblSerie : fetchedSeries ? fetchedSeries[0] : null
@@ -247,11 +275,11 @@ export default {
                     this.hasOeuvresFetchFailed = true
                     return
                   }
-                  res = await axios.get(`http://localhost:8000/api/bibliographie/oeuvres?est_une_bd=true&categorie=series&serie=${this.selectedBiblSerie.nom_fr}`)
+                  res = await axios.get(`/api/bibliographie/oeuvres/?est_une_bd=true&categorie=series&serie=${encodeURIComponent(this.selectedBiblSerie.nom_fr)}`)
                   break
                 }
                 default:
-                  res = await axios.get(`http://localhost:8000/api/bibliographie/oeuvres?est_une_bd=true&categorie=${this.currentBiblSection}`)
+                  res = await axios.get(`/api/bibliographie/oeuvres/?est_une_bd=true&categorie=${encodeURIComponent(this.currentBiblSection)}`)
                   break
               }
               
@@ -270,15 +298,13 @@ export default {
     handleComicsDropdownMouseOut () {
       if (!this.isComicsDropdownClicked) this.isComicsDropdownOpen = false
     },
-    handleKeyUp (keyboardEvent) {
-      const { keyCode } = keyboardEvent
-      switch(keyCode) {
-          case 32: // Space
-          case 13: // Enter
-              if (this.currentArtwork) this.isSlideShowOpen = true
-              break
-          default: return
-      }
+    closeup (oeuvre) {
+      this.selectedOeuvre = oeuvre
+      this.isModalOpen = true
+    },
+    closeupEnd () {
+      this.selectedOeuvre = null
+      this.isModalOpen = false
     }
   },
   created () {
@@ -368,6 +394,11 @@ export default {
   opacity: .875;
   word-break: break-word
 }
+.section-list-item > a {
+  padding: 0 .25rem;
+  margin-left: -.25rem;
+  border-radius: 999px;
+}
 .section-list-item.selected > a,
 .section-list-item > a:active,
 .section-list-item > a:hover,
@@ -394,6 +425,9 @@ export default {
 .comics-dropdown.clicked {
   background: var(--bg-light-broken);
   box-shadow: 0 0 0 .125rem #F9F9FF;
+}
+.comics-dropdown.clicked a.router-link-active {
+  background: var(--border-light-broken);
 }
 .dropdown-toggler {
   position: relative;
@@ -424,7 +458,7 @@ export default {
 .oeuvres-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem 1rem;
+  grid-gap: 4rem 8rem;
   margin-top: 0;
   padding: 0;
 }
@@ -449,21 +483,15 @@ export default {
   margin: 0;
   padding: .5rem 1rem;
 }
-.oeuvre-footer, .oeuvre-body {
-  border: 1px solid var(--border-light-broken);
-}
 .oeuvre-footer {
   border-radius: 0 0 3px 3px;
-  border-top: none;
   padding-bottom: .5rem;
-}
-.oeuvre-body {
-  border-bottom: none;
 }
 .oeuvre-illustration {
   width: 100%;
   height: 19vw;
-  object-fit: cover;
+  object-fit: contain;
+  cursor: pointer;
 }
 .oeuvre-date {
   text-align: right;
@@ -511,8 +539,26 @@ export default {
   margin-bottom: .5rem;
   padding: .5rem 1rem;
 }
-.editeur {
-  text-decoration: underline;
+.serie-publisher {
+  font-family: 'Noto Sans'
+}
+
+.modal-window {
+  position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+  background: #040404ee;
+  color: #CCC;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oeuvre-closeup {
+  animation: fall .3s ease 1;
+  max-height: calc(100% - 4rem);
+  max-width: calc(100% - 2rem);
+  width: 100%;
+  border-radius: 2px;
+  object-fit: contain;
 }
 
 /* Transitions */
@@ -522,6 +568,16 @@ export default {
 }
 .fade-leave-to {
   opacity: 0;
+}
+
+.fade-grow-leave-active,
+.fade-grow-enter-active {
+  transition: all .3s ease;
+}
+.fade-grow-leave-to,
+.fade-grow-enter-from {
+  opacity: 0;
+  transform: scale(.5);
 }
 
 .fade-both-leave-active,
@@ -538,6 +594,7 @@ export default {
 @media screen and (max-width: 1100px) {
   .oeuvres-list {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 4rem;
   }
   .oeuvre-illustration {
     height: 32vw;
@@ -576,6 +633,7 @@ export default {
 @media screen and (max-width: 500px) {
   .oeuvres-list {
     grid-template-columns: 1fr;
+    gap: 2rem 1rem;
   }
   .oeuvre-illustration {
     height: 75vw;
@@ -608,6 +666,16 @@ export default {
   } to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fall {
+  from {
+    transform: scale(1.25);
+    opacity: 0;
+  } to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 </style>

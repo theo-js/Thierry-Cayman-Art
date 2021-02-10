@@ -11,7 +11,11 @@ import {
     ADD_OEUVRES,
     PUSH_OEUVRES,
     ADD_BIBL_SERIES,
-    SET_SELECTED_SERIE
+    SET_SELECTED_SERIE,
+    // Blog
+    SET_BLOG_POSTS,
+    // Links
+    SET_LINKS
 } from './mutation-types'
 import { intlifyArtwork } from '../i18n/intlify'
 
@@ -30,7 +34,11 @@ const store = createStore({
             'divers': []
         },
         biblSeries: [],
-        selectedBiblSerie: null
+        selectedBiblSerie: null,
+        // Blog
+        blogPosts: {},
+        // Links
+        links: []
     },
     mutations: {
         // Artworks
@@ -105,6 +113,18 @@ const store = createStore({
         },
         [SET_SELECTED_SERIE] (state, serieName) {
             state.selectedBiblSerie = serieName
+        },
+        // Blog
+        [SET_BLOG_POSTS] (state, { posts, date }) {
+            if (!state['blogPosts'][date]) {
+                state['blogPosts'][date] = posts
+            }
+        },
+        // Links
+        [SET_LINKS] (state, links) {
+            if (state.links.length <= 0) {
+                state.links = links
+            }
         }
     },
     actions: {
@@ -139,6 +159,14 @@ const store = createStore({
         },
         selectBiblSerie: (context, serieName) => {
             context.commit(SET_SELECTED_SERIE, serieName)
+        },
+        // Blog
+        setBlogPosts: (context, { posts, date }) => {
+            context.commit(SET_BLOG_POSTS, { posts, date })
+        },
+        // Links
+        setLinks (context, links) {
+            context.commit(SET_LINKS, links)
         }
     }
 })

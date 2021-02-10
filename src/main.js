@@ -34,10 +34,11 @@ app.use(head)
 
 // Icons
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faChevronUp, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import FontAwesomeIcon from '@/lib/FontAwesome'
 
-library.add(faChevronDown, faChevronUp)
+library.add(faChevronDown, faChevronUp, faCog, faFacebook, faInstagram)
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 // Mount

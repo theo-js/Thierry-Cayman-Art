@@ -33,7 +33,8 @@ body::before {
 :root {
   --text-dark: #6c6d6e;
   --titles-dark: #333335;
-  --bg-light: #FFF;
+  --titles-purple: #7c7582; /* #948c9a*/
+  --bg-light: #FAFAFF;
   --bg-light-broken: #f7f7ff;
   --border-light-broken: #e4e4ef;
   --link: #177679B0;
@@ -87,5 +88,8 @@ a {
 p {
   font-family: 'Dosis', sans-serif;
   letter-spacing: .625px;
+}
+em, strong {
+  color: var(--titles-purple);
 }
 </style>

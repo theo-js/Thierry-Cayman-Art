@@ -1,5 +1,6 @@
-import { formatDate } from './format'
+import { formatDate, formatDateTime } from './format'
 
+// Portfolio
 export const intlifyCategory = (category, locale) => {
     if (!category) return null
 
@@ -60,6 +61,7 @@ export const intlifyArtwork = (artwork, locale) => {
     return { ...artwork, titre, legende }
 }
 
+// Bibliography
 export const intlifySerie = (serie, locale) => {
     if (!serie) return null
 
@@ -120,4 +122,44 @@ export const intlifyOeuvre = (oeuvre, locale) => {
 
     // Return artwork with new properties titre, legende, and formatted date
     return { ...oeuvre, titre, a_propos, parutionFormatted }
+}
+
+// Blog
+export const intlifyPost = (post, locale) => {
+    if (!post) return null
+
+    // Default locale
+    let titre = post.titre_en || post.titre_fr || post.titre_nl
+    let contenu = post.contenu_en || post.contenu_fr || post.contenu_nl
+
+    switch (locale) {
+        case 'fr':
+        case 'fr-BE':
+        case 'fr-FR':
+        case 'fr-CA':
+        case 'fr-CH':
+            titre = post.titre_fr || post.titre_en || post.titre_nl
+            contenu = post.contenu_fr || post.contenu_en || post.contenu_nl
+            break
+        case 'nl':
+        case 'nl-NL':
+        case 'nl-BE':
+            titre = post.titre_nl || post.titre_en || post.titre_fr
+            contenu = post.contenu_nl || post.contenu_en || post.contenu_fr
+            break
+        default:
+            break
+    }
+    // Format date
+    const created_date_formatted = formatDateTime(post.created_date, locale)
+    const last_modified_formatted = formatDateTime(post.last_modified, locale)
+
+    // Return artwork with new properties titre, legende, and formatted date
+    return {
+        ...post,
+        titre,
+        contenu,
+        created_date_formatted,
+        last_modified_formatted
+    }
 }

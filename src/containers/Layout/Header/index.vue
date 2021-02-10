@@ -52,7 +52,8 @@
         <li>
           <router-link
             @click="moveBorder"
-            :to="{ name: 'actualites' }"
+            :to="actualiteLink"
+            :class="$route.path.match('actualites') ? 'router-link-active' : ''"
           >
             {{ $t('app.sections.news') }}
           </router-link>
@@ -95,40 +96,48 @@
 <script>
 import LanguageSelect from '../../../components/language-select'
 export default {
-    name: 'Header',
-    props: {
-      isHomePage: {
-        type: Boolean,
-        default: false
+  name: 'Header',
+  props: {
+    isHomePage: {
+      type: Boolean,
+      default: false
+    }
+  },
+  components: {
+    LanguageSelect
+  },
+  data () {
+    return {
+      isNavOpen: false,
+      borderPos: {
+        left: 0,
+        width: 0,
+        transition: ''
       }
-    },
-    components: {
-      LanguageSelect
-    },
-    data () {
-      return {
-        isNavOpen: false,
-        borderPos: {
-          left: 0,
-          width: 0,
-          transition: ''
-        }
-      }
-    },
-    methods: {
-      moveBorder: function (clickEvent) {
-        if (!this.isHomePage) {
-          const { target } = clickEvent
-          const { width, left } = target.getBoundingClientRect()
-          const offsetLeft = target.parentElement.parentElement.getBoundingClientRect().left
-          this.borderPos = {
-            width,
-            left: left - offsetLeft,
-            transition: 'width .2s ease-in .2s, left .4s cubic-bezier(.62,-0.53,.1,.94) 0s'
-          }
+    }
+  },
+  methods: {
+    moveBorder: function (clickEvent) {
+      if (!this.isHomePage && window.innerWidth > 920) {
+        const { target } = clickEvent
+        const { width, left } = target.getBoundingClientRect()
+        const offsetLeft = target.parentElement.parentElement.getBoundingClientRect().left
+        this.borderPos = {
+          width,
+          left: left - offsetLeft,
+          transition: 'width .2s ease-in .2s, left .4s cubic-bezier(.62,-0.53,.1,.94) 0s'
         }
       }
     }
+  },
+  computed: {
+    actualiteLink () {
+      const now = new Date()
+      const month = now.getMonth()
+      const year = now.getFullYear()
+      return `/actualites/${month}-${year}`
+    }
+  }
 }
 </script>
 
@@ -197,7 +206,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
-  gap: .25rem .5rem;
+  gap: .25rem;
   margin: 0 auto;
   padding: 0 2rem;
   width: auto;
@@ -209,6 +218,7 @@ export default {
 .links-list > li {
   list-style: none;
   animation: fade-in-right 1s ease both;
+  padding: 1.25rem 0;
 }
 .links-list > li:nth-child(1) { animation-delay: .3s;}
 .links-list > li:nth-child(2) { animation-delay: .35s;}
@@ -225,7 +235,7 @@ export default {
 .links-list > li > a {
   display: inline-block;
   text-decoration: none;
-  padding: 1.5rem 0;
+  padding: 0 .25rem;
   border: 1px solid transparent;
   transition: .3s all ease;
 }
@@ -238,6 +248,10 @@ export default {
 .links-list > li > a:focus {
   color: var(--link-active);
   outline: none;
+}
+.links-list > li > a.router-link-active {
+  background: var(--border-light-broken);
+  border-radius: 999px;
 }
 .links-list > li > a.router-link-active:hover {
   filter: unset;
@@ -362,6 +376,14 @@ export default {
 
   .app-logo {
     display: block;
+  }
+
+  .links-list > li {
+    padding: 0;
+  }
+  .links-list > li > a.router-link-active {
+    padding: 0;
+    background: unset;
   }
 
   /* Open nav */

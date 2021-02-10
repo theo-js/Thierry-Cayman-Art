@@ -30,5 +30,25 @@
     "bibliography.sections.livres.description": "",
 
     "bibliographie.serie.editeur": "Uitgeverij",
-    "bibliographie.oeuvre.parution": "Publicatie"
+    "bibliographie.oeuvre.parution": "Publicatie",
+
+    "blog.title": "Thierry Cayman Art | Berichten van {month} {year}",
+    "blog.noPosts": "In die periode waren er geen publicaties",
+    "blog.loadingPosts": "Berichten laden...",
+
+    "app.links.title": "Enkele interessante links ...",
+    "app.links.description": "De meeste hiervan zijn kunstenaars wiens werk me erg interesseert. Ik stel voor dat jullie ze ontdekken.",
+    "links.loadingLinks": "Links laden...",
+
+    "contact.howto.title": "Hoe kunt u contact met mij opnemen?",
+    "contact.form.title": "Laat u me een berichtje",
+    "contact.form.name": "Naam",
+    "contact.form.email": "E-mail",
+    "contact.form.subject": "Onderwerp",
+    "contact.form.msg": "Bericht",
+
+    "app.forms.send": "Versturen",
+    "app.forms.sending": "Verzending...",
+    "app.forms.sent": "Verzonden !",
+    "app.forms.requiredFields": "Deze formuliervelden zijn verplicht"
 }
