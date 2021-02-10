@@ -128,12 +128,23 @@ export default {
                         const body = {
                             email: this.formData.email,
                             subject: this.formData.subject,
-                            message: `Message de ${this.formData.name}: ${this.formData.msg}`
+                            message: `
+                                Message de ${this.formData.name || 'anonyme'}\n
+                                Adresse e-mail: ${this.formData.email}\n
+                                ===============================\n
+                                ${this.formData.msg}
+                            `
                         }
                         await axios.post('/api/contact/', body, config)
 
                         this.hasSentForm = true
                         this.isSendingForm = true
+
+                        // Reset form data
+                        this.formData = {
+                            ...this.formData,
+                            msg: '', subject: ''
+                        }
                     } catch (err) {
                         console.log ({ err })
                         this.isSendingForm = false
@@ -200,8 +211,7 @@ export default {
     font-size: 1.5em;
 }
 .contact-form-body {
-    padding: 1rem 2rem;
-    padding-top: 1.5rem;
+    padding: 1.5rem 2rem;
     background: var(--bg-light-broken);
     border: 1px solid var(--border-light-broken);
     border-top: none;
