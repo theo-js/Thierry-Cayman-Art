@@ -326,7 +326,7 @@ export default {
   transform: translateY(0);
 }
 .home .app-logo.dark {
-  pointer-events: initial;
+  pointer-events: none;
   opacity: 0 !important;
   cursor: default;
 }

@@ -10,6 +10,8 @@
     "app.oops": "Ой !",
     "app.404msg": "Кажется, этой страницы не существует",
     "app.404": "Thierry Cayman Art - Не найдёно",
+    "app.developedBy": "Разработано",
+    "app.contactDev": "Связаться с программистом",
 
     "artworks.maximize": "Развернуть %{artworkTitle}",
 

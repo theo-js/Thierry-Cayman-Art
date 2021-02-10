@@ -10,6 +10,8 @@
     "app.oops": "Oops !",
     "app.404msg": "Sorry, page not found",
     "app.404": "Thierry Cayman Art - Page not found",
+    "app.developedBy": "Developed by",
+    "app.contactDev": "Contact developer",
 
     "artworks.maximize": "Maximize %{artworkTitle}",
 

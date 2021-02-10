@@ -10,6 +10,8 @@
     "app.oops": "Oeps !",
     "app.404msg": "Sorry, deze pagina bestaat niet",
     "app.404": "404-fout",
+    "app.developedBy": "Ontwikkeld door",
+    "app.contactDev": "Contact opnemen met de webontwikkelaar",
 
     "artworks.maximize": "Vergroten %{artworkTitle}",
 

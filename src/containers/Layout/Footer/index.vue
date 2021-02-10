@@ -2,7 +2,22 @@
   <div :class="`
     footer-content 
     ${isHomePage ? 'home' : ''}
-  `"></div>
+  `">
+  <transition name="fade">
+    <div class="homepage-footer" v-if="isHomePage">
+      <small class="copyright">© 2021</small>
+      <address class="developer-contact">
+        {{ $t('app.developedBy') }}&nbsp;
+        <a
+          href="https://www.linkedin.com/in/b748b01b7/"
+          :title="$t('app.contactDev')"
+          rel="noopener noreferrer"
+          target="_blank"
+        >Théo B.</a>
+      </address>
+    </div>
+  </transition>
+  </div>
 </template>
 
 <script>
@@ -20,5 +35,52 @@ export default {
 <style scoped>
 .footer-content {
   display: block;
+}
+
+.homepage-footer {
+  position: fixed; bottom: 2rem;
+  width: 100%; text-align: center;
+}
+
+.copyright {
+  animation: fade-in .5s ease both;
+  animation-delay: .9s;
+}
+
+.developer-contact {
+  animation: stretch-out 1s cubic-bezier(.56,.15,.45,1.8) both;
+  animation-delay: 1s;
+  font-family: 'Dosis', sans-serif;
+}
+.developer-contact a {
+  font-weight: 700;
+}
+
+/* Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: .3s all ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0 !important;
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}
+@keyframes stretch-out {
+  from {
+    opacity: 0;
+    transform: scaleX(.75);
+  } to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }
 </style>

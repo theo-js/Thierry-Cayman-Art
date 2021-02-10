@@ -91,6 +91,7 @@
 
 <script>
 import axios from 'axios'
+import getCookie from '../../utils/getCookie'
 import Beautton from '../../components/ui/beautton'
 
 export default {
@@ -118,12 +119,18 @@ export default {
                     try {
                         this.isSendingForm = true
                         // Config
+                        const csrftoken = getCookie('csrftoken')
+                        const config = {
+                            headers: {
+                                'X-CSRFToken': csrftoken
+                            }
+                        }
                         const body = {
                             email: this.formData.email,
                             subject: this.formData.subject,
                             message: `Message de ${this.formData.name}: ${this.formData.msg}`
                         }
-                        await axios.post('/api/contact/', body)
+                        await axios.post('/api/contact/', body, config)
 
                         this.hasSentForm = true
                         this.isSendingForm = true
@@ -195,6 +202,7 @@ export default {
 .contact-form-body {
     padding: 1rem 2rem;
     padding-top: 1.5rem;
+    background: var(--bg-light-broken);
     border: 1px solid var(--border-light-broken);
     border-top: none;
     border-radius: 0 0 3px 3px;
@@ -298,6 +306,10 @@ export default {
     grid-area: how-to;
     animation: fade-in .8s ease 1 both;
     animation-delay: .4s;
+    background-image: url('/static/images/contact/dessin.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .how-to h2 {
     text-align: center;
@@ -307,6 +319,10 @@ export default {
 
 .how-to .contact-info-list > li {
     list-style: none;
+}
+
+.how-to main {
+    text-align: center;
 }
 
 @media screen and (max-width: 1000px) {
