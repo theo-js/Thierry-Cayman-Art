@@ -424,7 +424,7 @@ export default {
 }
 .comics-dropdown.clicked {
   background: var(--bg-light-broken);
-  box-shadow: 0 0 0 .125rem #F9F9FF;
+  box-shadow: 0 0 0 .125rem var(--bg-light-broken);
 }
 .comics-dropdown.clicked a.router-link-active {
   background: var(--border-light-broken);

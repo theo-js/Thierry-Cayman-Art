@@ -29,6 +29,7 @@
 <script>
 import Header from './Header'
 import Footer from './Footer'
+import { fetchTheme } from '../../themes'
 
 export default {
     name: 'Layout',
@@ -54,6 +55,9 @@ export default {
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
         }
     },
+    created () {
+        fetchTheme()
+    },
     mounted () {
         window.addEventListener('scroll', this.handlePageScroll, true)
     },
@@ -66,6 +70,7 @@ export default {
 <style>
 body {
     background: var(--bg-light);
+    transition: .3s background ease;
 }
 </style>
 <style scoped>

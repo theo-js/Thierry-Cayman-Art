@@ -71,6 +71,14 @@
         <li style="margin-left: .25rem" class="lang">
           <LanguageSelect></LanguageSelect>
         </li>
+        <li style="margin-left: .75rem" class="theme">
+          <switcher
+            id="theme-selector"
+            :checked="isLightOpen"
+            @check="setTheme('light')"
+            @uncheck="setTheme('dark')"
+          ></switcher>
+        </li>
         <span
           class="moving-border"
           :style="{
@@ -95,6 +103,9 @@
 
 <script>
 import LanguageSelect from '../../../components/language-select'
+import Switcher from '../../../components/ui/switcher'
+import { setTheme } from '../../../themes'
+
 export default {
   name: 'Header',
   props: {
@@ -104,7 +115,7 @@ export default {
     }
   },
   components: {
-    LanguageSelect
+    LanguageSelect, Switcher
   },
   data () {
     return {
@@ -128,6 +139,10 @@ export default {
           transition: 'width .2s ease-in .2s, left .4s cubic-bezier(.62,-0.53,.1,.94) 0s'
         }
       }
+    },
+    setTheme (name) {
+      console.log(name)
+      setTheme(name)
     }
   },
   computed: {
@@ -136,6 +151,20 @@ export default {
       const month = now.getMonth()
       const year = now.getFullYear()
       return `/actualites/${month}-${year}`
+    },
+    isLightOpen () {
+      const themeString = localStorage['theme']
+
+      if (!themeString) return true
+
+      try {
+        const theme = JSON.parse(themeString)
+        if (theme.name === 'dark') return false
+        return true
+
+      } catch (err) {
+        return true
+      }
     }
   }
 }
@@ -209,6 +238,7 @@ export default {
   gap: .25rem;
   margin: 0 auto;
   padding: 0 2rem;
+  padding-right: 0;
   width: auto;
   min-width: 0;
   font-size: 1rem;
@@ -326,7 +356,7 @@ export default {
   transform: translateY(0);
 }
 .home .app-logo.dark {
-  pointer-events: none;
+  pointer-events: initial;
   opacity: 0 !important;
   cursor: default;
 }
@@ -335,6 +365,7 @@ export default {
   min-width: 100% !important;
   font-size: 1.25rem;
   gap: 0 1rem;
+  padding-right: 2rem;
 }
 .home .links-list > li > a { padding: 0; }
 
@@ -429,6 +460,14 @@ export default {
 
   .not-home .lang {
     border-top: 1px solid var(--border-light-broken);
+  }
+
+  .not-home .theme {
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    padding-right: .5rem;
+    display: flex !important;
+    justify-content: flex-end;
   }
 }
 

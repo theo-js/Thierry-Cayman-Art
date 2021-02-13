@@ -40,6 +40,7 @@ export default {
 .homepage-footer {
   position: fixed; bottom: 2rem;
   width: 100%; text-align: center;
+  z-index: 11;
 }
 
 .copyright {

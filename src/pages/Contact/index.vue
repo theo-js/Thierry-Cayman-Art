@@ -316,10 +316,10 @@ export default {
     grid-area: how-to;
     animation: fade-in .8s ease 1 both;
     animation-delay: .4s;
-    background-image: url('/static/images/contact/dessin.svg');
+    background-image: url('/static/images/contact/site_contact.svg');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 70% center;
 }
 .how-to h2 {
     text-align: center;
@@ -345,6 +345,9 @@ export default {
 @media screen and (max-width: 700px) {
     .contact {
         grid-template-areas: "how-to how-to" "contact-form contact-form";
+    }
+    .how-to {
+        background-position: 10% center !important;
     }
 }
 
