@@ -84,6 +84,7 @@ export default {
     border-radius: 3px;
     border: 1px solid var(--border-light-broken);
     user-select: none;
+    transition: .3s background ease;
 }
 .language-select::after {
     content: '▷';
@@ -108,6 +109,7 @@ export default {
     background: var(--bg-light);
     border-radius: 0 0 3px 3px;
     box-shadow: 0 .25rem .5rem 0 #1112;
+    z-index: 9;
 }
 .option {
     padding: .25rem .5rem;

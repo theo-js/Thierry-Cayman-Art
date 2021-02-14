@@ -49,7 +49,7 @@ export default {
     },
     computed: {
         tArtwork () {
-            return intlifyArtwork(this.artwork)
+            return intlifyArtwork(this.artwork, this.$i18n.locale)
         }
     },
     methods: {
