@@ -2,8 +2,8 @@
   <div
     class="modal-window"
     @click="$emit('close-slideshow')"
-    @keypress.left.prevent="$store.dispatch('navigateArtwork', { currentIndex, lastIndex, toNextArtwork: false })"
-    @keypress.right="$store.dispatch('navigateArtwork', { currentIndex, lastIndex, toNextArtwork: true })"
+    @keypress.left.prevent="$store.dispatch('navigateArtwork', { currentIndex, lastIndex, toNextArtwork: false, locale: this.$i18n.locale })"
+    @keypress.right="$store.dispatch('navigateArtwork', { currentIndex, lastIndex, toNextArtwork: true, locale: this.$i18n.locale })"
   >
     <button class="close-btn" @click="$emit('close-slideshow')">
         ×
@@ -87,7 +87,8 @@ export default {
                 {
                     currentIndex: this.currentIndex,
                     lastIndex: this.lastIndex,
-                    toNextArtwork: true
+                    toNextArtwork: true,
+                    locale: this.$i18n.locale
                 }
             )
         },
@@ -98,7 +99,8 @@ export default {
                 {
                     currentIndex: this.currentIndex,
                     lastIndex: this.lastIndex,
-                    toNextArtwork: false
+                    toNextArtwork: false,
+                    locale: this.$i18n.locale
                 }
             )
         },

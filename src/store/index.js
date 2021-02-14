@@ -66,7 +66,7 @@ const store = createStore({
         [SET_SELECTED_PORTFOLIO_ARTWORK]  (state, artwork) {
             state.selectedArtwork = artwork
         },
-        [NAVIGATE_ARTWORK] (state, { currentIndex, lastIndex, toNextArtwork }) {
+        [NAVIGATE_ARTWORK] (state, { currentIndex, lastIndex, toNextArtwork, locale }) {
             // Navigate to previous artwork in same category
             const { selectedArtwork, selectedPortfolioCategory } = state
             if (
@@ -91,7 +91,7 @@ const store = createStore({
                     }
 
                     // Replace state with new artwork
-                    state.selectedArtwork = intlifyArtwork(artworks[nextIndex])
+                    state.selectedArtwork = intlifyArtwork(artworks[nextIndex], locale)
                 }
             }
         },
@@ -141,8 +141,8 @@ const store = createStore({
         selectArtwork: (context, artwork) => {
             context.commit(SET_SELECTED_PORTFOLIO_ARTWORK, artwork)
         },
-        navigateArtwork: (context, { currentIndex, lastIndex, toNextArtwork }) => {
-            context.commit(NAVIGATE_ARTWORK, { currentIndex, lastIndex, toNextArtwork })
+        navigateArtwork: (context, { currentIndex, lastIndex, toNextArtwork, locale }) => {
+            context.commit(NAVIGATE_ARTWORK, { currentIndex, lastIndex, toNextArtwork, locale })
         },
         // Bibliography
         selectBiblSection: (context, newSection) => {
