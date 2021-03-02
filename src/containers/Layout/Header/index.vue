@@ -141,7 +141,6 @@ export default {
       }
     },
     setTheme (name) {
-      console.log(name)
       setTheme(name)
     }
   },

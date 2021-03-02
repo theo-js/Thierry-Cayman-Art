@@ -162,6 +162,9 @@ export default {
             if (this.isSendingForm) return this.$t('app.forms.sending')
             return this.$t('app.forms.send')
         }
+    },
+    created () {
+        document.title = `Thierry Cayman Art | ${this.$t('app.sections.contacts')}` 
     }
 }
 </script>
