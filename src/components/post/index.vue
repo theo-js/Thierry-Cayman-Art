@@ -8,7 +8,7 @@
               {{ post.titre }}
           </h2>
           <p class="created-date">
-              {{ post.last_modified_formatted }}
+              {{ post.created_date_formatted }}
           </p>
           <button @click="isCollapsed = !isCollapsed" :class="`toggle-collapse ${isCollapsed ? 'active' : 'not-active'}`">
               <font-awesome-icon icon="chevron-down" class="chevron"></font-awesome-icon>
