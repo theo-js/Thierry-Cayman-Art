@@ -5,11 +5,11 @@
   `">
   <transition name="fade">
     <div class="homepage-footer" v-if="isHomePage">
-      <small class="copyright">© 2021</small>
+      <small class="copyright">© {{ new Date().getFullYear() }}</small>
       <address class="developer-contact">
         {{ $t('app.developedBy') }}&nbsp;
         <a
-          href="https://www.linkedin.com/in/b748b01b7/"
+          href="http://www.theobayenet.com"
           :title="$t('app.contactDev')"
           rel="noopener noreferrer"
           target="_blank"

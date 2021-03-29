@@ -8,7 +8,9 @@
               <ul class="contact-info-list">
                   <li>
                       {{ $t('contact.form.email') }}:&nbsp;
-                      <strong>caymanthierry1@gmail.com</strong>
+                        <a title="Envoyer un mail directement à Thierry Cayman">
+                            <strong>caymanthierry1@gmail.com</strong>
+                        </a>
                     </li>
               </ul>
               <br />
