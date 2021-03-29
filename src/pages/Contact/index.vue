@@ -8,8 +8,12 @@
               <ul class="contact-info-list">
                   <li>
                       {{ $t('contact.form.email') }}:&nbsp;
-                        <a title="Envoyer un mail directement à Thierry Cayman">
-                            <strong>caymanthierry1@gmail.com</strong>
+                        <a
+                            title="Envoyer un mail directement à Thierry Cayman"
+                            href="mailto:contact@thierrycayman.be"
+                            className={styles.mailto}
+                        >
+                            <strong>contact@thierrycayman.be</strong>
                         </a>
                     </li>
               </ul>
@@ -177,6 +181,11 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: "how-to contact-form";
     grid-gap: 1rem;
+}
+
+.mailto:hover, .mailto:focus {
+    text-decoration: underline;
+    outline: none;
 }
 
 /* Contact form */
