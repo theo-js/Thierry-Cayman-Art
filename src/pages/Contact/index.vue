@@ -9,9 +9,9 @@
                   <li>
                       {{ $t('contact.form.email') }}:&nbsp;
                         <a
-                            title="Envoyer un mail directement à Thierry Cayman"
+                            :title="mailtoTitle"
                             href="mailto:contact@thierrycayman.be"
-                            className={styles.mailto}
+                            class="mailto"
                         >
                             <strong>contact@thierrycayman.be</strong>
                         </a>
@@ -24,7 +24,7 @@
       </section>
       <section class="send-email">
           <form
-            class="contact-form"
+            :class="`contact-form ${hasSentForm ? 'sent' : ''}`"
             @submit.prevent="handleContactFormSubmit"
           >
             <header class="contact-form-header">
@@ -91,6 +91,9 @@
                 </beautton>
             </main>
           </form>
+          <p aria-live="assertive" :class="`thx-msg ${hasSentForm ? 'sent' : ''}`">
+              <template v-if="hasSentForm">{{ $t('contact.form.thx') }}</template>
+          </p>
       </section>
   </div>
 </template>
@@ -167,6 +170,9 @@ export default {
             if (this.hasSentForm) return this.$t('app.forms.sent')
             if (this.isSendingForm) return this.$t('app.forms.sending')
             return this.$t('app.forms.send')
+        },
+        mailtoTitle () {
+            return this.$t('contact.mailto.title')
         }
     },
     created () {
@@ -183,14 +189,18 @@ export default {
     grid-gap: 1rem;
 }
 
+.mailto {
+    text-decoration-color: var(--titles-purple);
+}
 .mailto:hover, .mailto:focus {
-    text-decoration: underline;
+    text-decoration: none;
     outline: none;
 }
 
 /* Contact form */
 .send-email {
     grid-area: contact-form;
+    position: relative;
 }
 
 .contact-form {
@@ -315,6 +325,44 @@ export default {
     opacity: .75;
 }
 
+/* Sent contact mail */
+.contact-form.sent {
+    transform: rotate3d(1,1,1,-1turn) translate(-92%, 11%) scale(.0625) skew(-10deg, 10deg);
+    opacity: 0;
+    transition: transform 2s ease-in-out .5s, opacity 2s ease-out 2.5s;
+}
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .contact-form.sent {
+        /* Translate more to the left */
+        transform: rotate3d(1,1,1,-1turn) translate(-100%, 10%) scale(.0625) skew(-10deg, 10deg);
+    }
+}
+@media screen and (max-width: 700px) {
+    .contact-form.sent {
+        /* Send letter to postman above */
+        transform: rotate3d(1,1,1,-1turn) translate(-31%, -61%) scale(.04, .03) skew(-10deg, 10deg);
+    }
+}
+/* Thanks msg after user sent form */
+.thx-msg {
+    position: absolute; left: 0; top: 0; bottom: 0; right: 0;
+    opacity: 0;
+    margin: 0;
+    pointer-events: none; user-select: none;
+
+    font-size: 2.25rem !important;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: var(--titles-purple);
+    text-align: right;
+}
+.thx-msg.sent {
+    animation-name: thx-fade;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-delay: 2.5s;
+    animation-timing-function: cubic-bezier(.18,1.02,.63,1.03);
+}
+
 .star {
     color: var(--text-red);
 }
@@ -391,6 +439,16 @@ export default {
         box-shadow: none;
     } to {
         box-shadow: 0 1px 2px 0 #2242;
+    }
+}
+
+@keyframes thx-fade {
+    from {
+        opacity: 0;
+        transform: translate(-12.5%, calc(50% - 1em));
+    } to {
+        opacity: 1;
+        transform: translate(0, 0);
     }
 }
 </style>

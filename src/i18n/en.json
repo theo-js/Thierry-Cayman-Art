@@ -44,10 +44,12 @@
 
     "contact.howto.title": "How to reach to me ?",
     "contact.form.title": "Leave me a message",
+    "contact.mailto.title": "Send me an email directly",
     "contact.form.name": "Name",
     "contact.form.email": "Email",
     "contact.form.subject": "Subject",
     "contact.form.msg": "Message",
+    "contact.form.thx": "The postman has received your letter! I will answer you as soon as possible ...",
 
     "app.forms.send": "Send",
     "app.forms.sending": "Sending...",

@@ -5,12 +5,17 @@
 </template>
 
 <script>
+import { setLangAttribute } from './i18n/format'
 import Layout from './containers/Layout'
 
 export default {
   name: 'App',
   components: {
     Layout
+  },
+  mounted () {
+    // Change html lang attribute
+    setLangAttribute(this.$i18n.locale)
   }
 }
 </script>

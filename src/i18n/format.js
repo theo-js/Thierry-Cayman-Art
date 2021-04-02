@@ -105,3 +105,31 @@ export const formatMonth = (monthNum, locale) => {
             return monthsEN[monthNum]
     }
 }
+
+export const setLangAttribute = (locale) => {
+    // Get lang attribute value
+    let attr = 'en'
+    switch (locale) {
+        case 'fr':
+        case 'fr-BE':
+        case 'fr-FR':
+        case 'fr-CA':
+        case 'fr-CH':
+            attr = 'fr'
+            break
+        case 'nl':
+        case 'nl-NL':
+        case 'nl-BE':
+            attr = 'nl'
+            break
+        case 'ru':
+        case 'ru-RU':
+        case 'ru-UA':
+            attr = 'ru'
+            break
+        default: break
+    }
+    
+    // Set attribute
+    document.querySelector('html').setAttribute('lang', attr)
+}

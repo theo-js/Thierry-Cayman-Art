@@ -30,6 +30,8 @@
             loading="eager"
             @contextmenu.prevent
             @click.stop
+            @touchmove="handleSwipe"
+            @touchend="canSwipe = true"
         />
         <figcaption
             v-if="artwork.titre || artwork.legende"
@@ -61,11 +63,14 @@
 </template>
 
 <script>
+import { handleUnidirectionalSwipe } from '../../utils/handleSwipe'
+
 export default {
     name: 'artwork-slideshow',
     data () {
         return {
-            move: 'right'
+            move: 'right',
+            canSwipe: true
         }
     },
     props: {
@@ -121,6 +126,21 @@ export default {
                     this.$emit('close-slideshow')
                     break
                 default: return
+            }
+        },
+        handleTouchmove (touchEvent) {
+            if (this.canSwipe) {
+                const currentTouch = touchEvent.clientX
+                handleUnidirectionalSwipe({
+                    currentTouch,
+                    lastTouch: this.$options.lastTouch,
+                    swipeLeft: this.moveRight,
+                    swipeRight: this.moveLeft,
+                    after: () => {
+                        this.$options.lastTouch = currentTouch
+                        this.canSwipe = false
+                    }
+                })
             }
         }
     },

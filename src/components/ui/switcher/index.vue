@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { handleUnidirectionalSwipe } from '../../../utils/handleSwipe'
+
 export default {
     name: 'switcher',
     data: function () {
@@ -46,37 +48,42 @@ export default {
             const { touches } = e
             if (touches.length === 1) {
                 const currentTouch = touches[0].clientX
-                this.handleSwipe(currentTouch)
+                handleUnidirectionalSwipe({
+                    currentTouch,
+                    lastTouch: this.$options.lastTouch,
+                    swipeLeft: this.swipeLeft,
+                    swipeRight: this.swipeRight,
+                    after: () => this.$options.lastTouch = currentTouch
+                })
             }
         },
         handleMousemove: function (e) {
             if (this.isMouseDown) {
                 const currentTouch = e.clientX
-                this.handleSwipe(currentTouch)
+                handleUnidirectionalSwipe({
+                    currentTouch,
+                    lastTouch: this.$options.lastTouch,
+                    swipeLeft: this.swipeLeft,
+                    swipeRight: this.swipeRight,
+                    after: () => this.$options.lastTouch = currentTouch
+                })
             }
         },
-        // Decide whether to check or uncheck depending on swipe direction
-        handleSwipe (currentTouch) {
-            if (this.$options.lastTouch) {
-                if (currentTouch < this.$options.lastTouch) {
-                    // Swipe to the left
-                    if (this.$refs.checkbox.checked) {
-                        this.$refs.checkbox.checked = false
-                        this.$emit('uncheck')
-                        // Prevent click since uncheck was already effective
-                        this.canClick = false
-                    }
-                } else if (currentTouch > this.$options.lastTouch) {
-                    // Swipe to the right
-                    if (!this.$refs.checkbox.checked) {
-                        this.$refs.checkbox.checked = true
-                        this.$emit('check')
-                        // Prevent click since check was already effective
-                        this.canClick = false
-                    }
-                }
+        swipeLeft () {
+            if (this.$refs.checkbox.checked) {
+                this.$refs.checkbox.checked = false
+                this.$emit('uncheck')
+                // Prevent click since uncheck was already effective
+                this.canClick = false
             }
-            this.$options.lastTouch = currentTouch
+        },
+        swipeRight () {
+            if (!this.$refs.checkbox.checked) {
+                this.$refs.checkbox.checked = true
+                this.$emit('check')
+                // Prevent click since check was already effective
+                this.canClick = false
+            }
         },
         handleMouseup: function () {
             this.isMouseDown = false

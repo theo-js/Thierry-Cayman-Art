@@ -44,10 +44,12 @@
 
     "contact.howto.title": "Hoe kunt u contact met mij opnemen?",
     "contact.form.title": "Laat u me een berichtje",
+    "contact.mailto.title": "Mij direct een e-mail sturen",
     "contact.form.name": "Naam",
     "contact.form.email": "E-mail",
     "contact.form.subject": "Onderwerp",
     "contact.form.msg": "Bericht",
+    "contact.form.thx": "De postbode heeft uw brief ontvangen! Ik zal je zo snel mogelijk antwoorden ...",
 
     "app.forms.send": "Versturen",
     "app.forms.sending": "Verzending...",

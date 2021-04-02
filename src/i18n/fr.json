@@ -44,10 +44,12 @@
 
     "contact.howto.title": "Comment me joindre ?",
     "contact.form.title": "Laissez-moi un message",
+    "contact.mailto.title": "M'envoyer un email directement",
     "contact.form.name": "Nom",
     "contact.form.email": "E-mail",
     "contact.form.subject": "Sujet",
     "contact.form.msg": "Message",
+    "contact.form.thx": "Le facteur a bien réceptionné votre lettre ! Je vous réponds dans les plus brefs délais ...",
 
     "app.forms.send": "Envoyer",
     "app.forms.sending": "Envoi...",

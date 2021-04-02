@@ -17,8 +17,8 @@ export const dark = {
     ['--text-dark']: '#adadad',
     ['--titles-dark']: '#d1d1d6',
     ['--titles-purple']: '#7c7582',
-    ['--bg-light']: '#080808',
-    ['--bg-light-broken']: '#1b1a1d',
+    ['--bg-light']: '#080808', // #06050a
+    ['--bg-light-broken']: '#1b1a1d', // #19191f
     ['--border-light-broken']: '#2b2b2f',
     ['--link']: 'rgb(43 197 202 / 69%)',
     ['--link-active']: '#68bf32',
@@ -46,7 +46,7 @@ export const setTheme = themeName => {
     localStorage['theme'] = JSON.stringify(theme)
 
     // Set meta theme color tag
-    document.querySelector("meta[name=theme-color]").setAttribute('content',  theme['bg-light'])
+    document.querySelector("meta[name=theme-color]").setAttribute('content',  theme['--bg-light'])
 }
 
 export const fetchTheme = () => {
@@ -65,7 +65,7 @@ export const fetchTheme = () => {
         })
 
         // Meta theme color tag
-        document.querySelector("meta[name=theme-color]").setAttribute('content',  theme['bg-light'])
+        document.querySelector("meta[name=theme-color]").setAttribute('content',  theme['--bg-light'])
     } catch (err) {
         return
     }

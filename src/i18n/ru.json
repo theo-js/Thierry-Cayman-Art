@@ -46,9 +46,11 @@
     "contact.form.email": "Е-мейл",
     "contact.form.subject": "Тема",
     "contact.form.msg": "Содержание сообщения",
+    "contact.form.thx": "Почтальон получил ваше письмо ! Отвечу вам как можно скорее ...",
 
     "contact.howto.title": "Как со мной связаться ?",
     "contact.form.title": "Оставьте мне сообщение",
+    "contact.mailto.title": "Напрямую отправить мне электронное письмо",
     "app.forms.send": "Отправить",
     "app.forms.sending": "Отправка...",
     "app.forms.sent": "Отправлено !",

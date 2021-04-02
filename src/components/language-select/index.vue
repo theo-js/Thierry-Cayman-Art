@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { setLangAttribute } from '../../i18n/format'
+
 export default {
     name: 'language-select',
     data () {
@@ -70,6 +72,7 @@ export default {
             // Set new locale
             localStorage['locale'] = lang.locale
             this.$i18n.locale = lang.locale
+            setLangAttribute(lang.locale)
             // Remove focus
             this.$refs.select.blur()
         }
