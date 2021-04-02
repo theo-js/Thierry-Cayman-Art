@@ -5,7 +5,11 @@
     @keypress.left.prevent="$store.dispatch('navigateArtwork', { currentIndex, lastIndex, toNextArtwork: false, locale: this.$i18n.locale })"
     @keypress.right="$store.dispatch('navigateArtwork', { currentIndex, lastIndex, toNextArtwork: true, locale: this.$i18n.locale })"
   >
-    <button class="close-btn" @click="$emit('close-slideshow')">
+    <button
+        class="close-btn"
+        @click="$emit('close-slideshow')"
+        aria-label="Fermer"
+    >
         ×
     </button>
     <nav class="slideshow-navigation">
@@ -30,7 +34,7 @@
             loading="eager"
             @contextmenu.prevent
             @click.stop
-            @touchmove="handleSwipe"
+            @touchmove="handleTouchmove"
             @touchend="canSwipe = true"
         />
         <figcaption
