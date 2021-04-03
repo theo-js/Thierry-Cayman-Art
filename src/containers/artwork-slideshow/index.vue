@@ -34,6 +34,7 @@
             loading="eager"
             @contextmenu.prevent
             @click.stop
+            @touchstart="$options.lastTouch = null"
             @touchmove="handleTouchmove"
             @touchend="canSwipe = true"
         />
@@ -134,18 +135,30 @@ export default {
         },
         handleTouchmove (touchEvent) {
             if (this.canSwipe) {
-                const currentTouch = touchEvent.clientX
-                handleUnidirectionalSwipe({
-                    currentTouch,
-                    lastTouch: this.$options.lastTouch,
-                    swipeLeft: this.moveRight,
-                    swipeRight: this.moveLeft,
-                    after: () => {
-                        this.$options.lastTouch = currentTouch
+                const { touches } = touchEvent
+                if (touches.length === 1) {
+                    const currentTouch = touches[0].clientX
+                    this.handlePhotoSwipe(currentTouch)
+                } else if (touches.length === 2) {
+                    // Don't swipe if user is trying to zoom
+                    this.canSwipe = false
+                }
+                
+            }
+        },
+        handlePhotoSwipe (currentTouch) {
+            handleUnidirectionalSwipe({
+                currentTouch,
+                lastTouch: this.$options.lastTouch,
+                swipeLeft: this.moveRight,
+                swipeRight: this.moveLeft,
+                after: () => {
+                    if (this.$options.lastTouch) {
                         this.canSwipe = false
                     }
-                })
-            }
+                    this.$options.lastTouch = currentTouch
+                }
+            })
         }
     },
     created () {
@@ -283,7 +296,8 @@ export default {
 }
 @keyframes reveal-left {
     from {
-        transform: translate(50%);
+        transform: translate(50%) scale(.9);
+        filter: brightness(.9);
         opacity: 0;
     } to {
         transform: translate(0);
@@ -292,7 +306,8 @@ export default {
 }
 @keyframes reveal-right {
     from {
-        transform: translate(-50%);
+        transform: translate(-50%) scale(.9);
+        filter: brightness(.9);
         opacity: 0;
     } to {
         transform: translate(0);
