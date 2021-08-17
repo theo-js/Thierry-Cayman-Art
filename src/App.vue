@@ -39,7 +39,7 @@ body::before {
   --text-dark: #6c6d6e;
   --titles-dark: #333335;
   --titles-purple: #7c7582; /* #948c9a*/
-  --bg-light: #FAFAFF;
+  --bg-light: #FDFDFF;
   --bg-light-broken: #f7f7ff;
   --border-light-broken: #e4e4ef;
   --link: #177679B0;

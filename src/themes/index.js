@@ -3,7 +3,7 @@ export const light = {
     ['--text-dark']: '#6c6d6e',
     ['--titles-dark']: '#333335',
     ['--titles-purple']: '#7c7582',
-    ['--bg-light']: '#fafaff',
+    ['--bg-light']: '#FDFDFF',
     ['--bg-light-broken']: '#f7f7ff',
     ['--border-light-broken']: '#e4e4ef',
     ['--link']: 'rgba(23,118,121,0.69)',

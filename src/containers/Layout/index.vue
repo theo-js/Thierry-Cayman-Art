@@ -76,7 +76,7 @@ body {
 <style scoped>
 .app-wrapper {
     display: block;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .app-header {
     min-height: 55px;
@@ -86,11 +86,14 @@ body {
     transition-delay: .5s;
 }
 .app-content {
-    max-width: 1400px;
     min-height: 66vh;
+    transition: .5s all ease;
+}
+.app-content > * {
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    transition: .5s all ease;
 }
 .app-footer {
     display: block;

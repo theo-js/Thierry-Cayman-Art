@@ -37,6 +37,8 @@
     "blog.title": "Thierry Cayman Art | Articles de {month} {year}",
     "blog.noPosts": "Pas d'articles durant cette période",
     "blog.loadingPosts": "Chargement des articles...",
+    "blog.post.read": "Consulter cet article",
+    "blog.post.close": "Fermer l'article",
 
     "app.links.title": "Quelques liens intéressants ...",
     "app.links.description": "Il s'agit, en général, de sites d'artistes dont j'apprécie le travail.",

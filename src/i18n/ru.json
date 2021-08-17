@@ -37,12 +37,14 @@
     "blog.title": "Thierry Cayman Art | Статьи за {month} {year} года",
     "blog.noPosts": "За этот период публикаций не было",
     "blog.loadingPosts": "Загрузка статей...",
+    "blog;post.read": "Читать эту статью",
+    "blog.post.close": "Закрыть статью",
 
     "app.links.title": "Несколько интересных ссылок ...",
     "app.links.description": "Большинство из этих - художники, работы которых мне нравятся.",
     "links.loadingLinks": "Загрузка ссылок...",
 
-    "contact.form.name": "Ймя",
+    "contact.form.name": "Имя",
     "contact.form.email": "Е-мейл",
     "contact.form.subject": "Тема",
     "contact.form.msg": "Содержание сообщения",

@@ -37,6 +37,8 @@
     "blog.title": "Thierry Cayman Art | Berichten van {month} {year}",
     "blog.noPosts": "In die periode waren er geen publicaties",
     "blog.loadingPosts": "Berichten laden...",
+    "blog.post.read": "Lezen dit artikel",
+    "blog.post.close": "Sluiten het artikel",
 
     "app.links.title": "Enkele interessante links ...",
     "app.links.description": "De meeste hiervan zijn kunstenaars wiens werk ik leuk vind.",

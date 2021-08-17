@@ -5,6 +5,7 @@
             <li
                 v-for="(date, index) in dates"
                 :key="date.month + '-' + date.year"
+                :style="{animationDelay: `${index/15}s`}"
                 :class="`
                     dates-list-item 
                     ${date.month == selectedDate.month && date.year == selectedDate.year ? 'selected': 'not-selected'}
@@ -127,6 +128,7 @@ export default {
             // No posts or could not fetch
             if (matchingPosts === false) return false
             if (!matchingPosts) return null
+            
             return matchingPosts
         },
         tCurrentPosts () {
@@ -146,6 +148,7 @@ export default {
         }
     },
     methods: {
+        // Fetch posts relative to this date and store them
         async fetchOncePosts (date) {
             if (
                 date && 
@@ -208,25 +211,34 @@ export default {
 
 <style scoped>
 .blog {
-    display: grid;
+  display: grid;
   grid-template-columns: 4fr 18fr;
   grid-template-areas: "dates oeuvres-container";
-  grid-gap: .5rem 1rem;
+  grid-gap: .5rem 0;
+  padding: 0;
 }
 
 .date-filter {
     grid-area: dates;
+    position: relative;
 }
 .dates-list {
+    position: sticky; top: 0;
+    overflow: auto;
+    max-height: 100vh; height: 100vh;
     display: flex;
     flex-flow: column nowrap;
     gap: calc(1rem - 2px) 1rem;
-    padding: 0;
-    margin-top: 0;
+    padding: 0 1rem; padding-bottom: 1rem;
+    background-color: var(--bg-light-broken);
+    margin-top: -1px;
+    transition: background-color .3s ease;
+    animation: fade-bg 2s ease;
 }
 .dates-list-item {
     list-style: none;
     border-bottom: 1px solid transparent;
+    animation: fade-right .2s ease-out backwards;
 }
 .dates-list-item:hover {
     border-color: var(--border-light-broken);
@@ -242,7 +254,7 @@ export default {
     display: block;
     text-decoration: none;
     border-radius: 999px;
-    padding: 0 .25rem;
+    padding: 0 .333rem;
     transition: .3s all ease;
 }
 .dates-list-item a:hover,
@@ -252,6 +264,7 @@ export default {
     outline: none;
     transform: translate(.25rem);
     color: var(--link-active);
+    max-width: calc(100% - .25rem);
 }
 .dates-list-item.selected a {
     background: var(--border-light-broken);
@@ -266,7 +279,7 @@ export default {
 }
 
 .msg {
-    margin-top: 1.25rem;
+    margin: .5rem;
     padding: .5rem 1rem;
     border-radius: 0 3px 3px 0;
 }
@@ -288,11 +301,34 @@ export default {
 }
 
 
+@media screen and (max-width: 549px) {
+    .dates-list {
+        margin-top: -3px;
+    }
+}
+
+
 @keyframes spin {
     from {
         transform: rotate(0);
     } to {
         transform: rotate(359deg);
+    }
+}
+@keyframes fade-right {
+    from { 
+        opacity: 0;
+        margin-left: .5rem;
+    } to { 
+        opacity: 1;
+        margin-left: 0;
+    }
+}
+@keyframes fade-bg {
+    from {
+        background-color: var(--bg-light);
+    } to {
+        background-color: var(--bg-light-broken);
     }
 }
 </style>
