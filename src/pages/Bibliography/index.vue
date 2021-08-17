@@ -356,8 +356,8 @@ export default {
 .bibliography img {
   user-select: none;
 }
-.bibliography > section h2,
-.bibliography > section h3,
+.bibliography > nav h2,
+.bibliography > nav h3,
 .category-description h3 {
   margin: 0;
   font-weight: normal;
