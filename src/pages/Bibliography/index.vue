@@ -1,7 +1,7 @@
 <template>
   <div class="bibliography">
-    <section class="category-section">
-      <div class="fixed">
+    <nav class="category-section">
+      <div class="sticky">
         <h2>{{ $t('app.sections.bibliography.full') }}</h2>
         <ul class="section-list">
           <li
@@ -62,7 +62,7 @@
           </li>
         </ul>
       </div>
-    </section>
+    </nav>
     <main class="oeuvres-container">
         <header v-if="tSeries && tSeries.length > 0 && currentBiblSection === 'series'">
           <nav
@@ -371,8 +371,8 @@ export default {
 .category-section {
   grid-area: category-section;
 }
-.fixed {
-  position: fixed;
+.sticky {
+  position: sticky; top: 1rem;
 }
 .section-list {
   display: flex;
@@ -602,7 +602,7 @@ export default {
 }
 
 @media screen and (max-width: 800px) {
-  .fixed {
+  .sticky {
     position: unset;
   }
   .bibliography {
