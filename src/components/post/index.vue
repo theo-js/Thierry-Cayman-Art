@@ -309,8 +309,8 @@ export default {
 }
 .post.not-collapsed .post-content {
     /* Blur inner margins */
-    -webkit-mask-image: linear-gradient(to bottom, #0000, #000 1rem, #000 calc(100% - 1.5rem), #0000) !important;
-    mask-image: linear-gradient(to bottom, #0000, #000 1rem, #000 calc(100% - 1.5rem), #0000) !important;
+    -webkit-mask-image: linear-gradient(to bottom, #000, #000 calc(100% - 1.5rem), #0000) !important;
+    mask-image: linear-gradient(to bottom, #000, #000 calc(100% - 1.5rem), #0000) !important;
 }
 
 .toggle-collapse.active {
