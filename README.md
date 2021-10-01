@@ -1,25 +1,4 @@
 # Thierry Cayman Art
 [http://www.thierrycayman.be/#/](http://www.thierrycayman.be/#/)
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This is the front end of a showcase website made with Vue.js
